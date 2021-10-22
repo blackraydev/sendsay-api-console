@@ -1,21 +1,29 @@
 import React, { FormEvent, MouseEvent, useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { RouteComponentProps } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 
-import { authenticate } from '../../store/actions/auth';
-import { authIsLoggedInSelector, authLoadingSelector } from '../../store/selectors';
+import { checkForCyrillic } from '../../helpers/checkForCyrillic';
+import { useActions } from '../../hooks/useActions';
+import { authHasErrorInSelector, authIsLoggedInSelector, authLoadingSelector } from '../../store/selectors';
+import Button from '../../UI/Button';
+import Input from '../../UI/Input';
 import * as UI from './styles';
 
 const LoginPage: React.FC<RouteComponentProps> = ({ history }) => {
-  const dispatch = useDispatch();
+  const { authenticate, authenticateCheck } = useActions();
   const [login, setLogin] = useState('');
   const [sublogin, setSubLogin] = useState('');
   const [password, setPassword] = useState('');
+  const [invalidLogin, setInvalidLogin] = useState(false);
+  const [invalidPassword, setInvalidPassword] = useState(false);
   const loading = useSelector(authLoadingSelector);
+  const hasError = useSelector(authHasErrorInSelector);
   const isLoggedIn = useSelector(authIsLoggedInSelector);
 
-  console.log('loading', loading);
+  useEffect(() => {
+    authenticateCheck();
+  }, []);
 
   useEffect(() => {
     if (isLoggedIn) {
@@ -24,31 +32,89 @@ const LoginPage: React.FC<RouteComponentProps> = ({ history }) => {
   }, [isLoggedIn]);
 
   const doLogin = () => {
-    dispatch(
-      authenticate({
-        login,
-        sublogin,
-        password,
-      })
-    );
+    authenticate({
+      login,
+      sublogin,
+      password,
+    });
+  };
+
+  const isFormValid = () => {
+    let valid = true;
+
+    if (!login) {
+      setInvalidLogin(true);
+      valid = false;
+    }
+
+    if (!password || checkForCyrillic(password)) {
+      setInvalidPassword(true);
+      valid = false;
+    }
+
+    return valid;
+  };
+
+  const clearValidation = () => {
+    setInvalidLogin(false);
+    setInvalidPassword(false);
   };
 
   const onSubmit = (event: FormEvent | MouseEvent) => {
     event.preventDefault();
-    doLogin();
+
+    clearValidation();
+
+    if (isFormValid()) {
+      doLogin();
+    }
   };
 
   return (
     <UI.Wrapper>
       <UI.LogoStyled src="/icons/logo.svg" alt="" />
       <UI.Form onSubmit={onSubmit} action="/">
-        <input value={login} onChange={(e) => setLogin(e.target.value)} placeholder="Логин" />
-        <input value={sublogin} onChange={(e) => setSubLogin(e.target.value)} placeholder="Сублогин" />
-        <input value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Сублогин" />
-        <button type="submit" onClick={onSubmit}>
-          Отправить
-        </button>
+        <UI.FormHeader>API-консолька</UI.FormHeader>
+        {hasError && (
+          <UI.ErrorWrapper>
+            <UI.SmileWrapper>
+              <UI.Smile src="/icons/meh.svg" alt="" />
+            </UI.SmileWrapper>
+            <UI.DescriptionWrapper>
+              <UI.ErrorMessage>Вход не вышел</UI.ErrorMessage>
+              <UI.ErrorStatus>id: "error/auth/failed", explain: "wrong_credentials"</UI.ErrorStatus>
+            </UI.DescriptionWrapper>
+          </UI.ErrorWrapper>
+        )}
+        <Input
+          value={login}
+          onChange={(e) => setLogin(e.target.value)}
+          placeholder="Логин"
+          label="Логин"
+          invalid={invalidLogin}
+        />
+        <Input
+          value={sublogin}
+          onChange={(e) => setSubLogin(e.target.value)}
+          placeholder="Сублогин"
+          label="Сублогин"
+          optional
+        />
+        <Input
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          placeholder="Пароль"
+          label="Пароль"
+          passwordType
+          invalid={invalidPassword}
+        />
+        <Button onClick={onSubmit} type="submit">
+          {loading ? <UI.Loader src="/icons/loader.svg" alt="" /> : 'Войти'}
+        </Button>
       </UI.Form>
+      <UI.Link href="https://github.com/blackraydev" target="_blank" rel="noreferrer">
+        @blackraydev
+      </UI.Link>
     </UI.Wrapper>
   );
 };

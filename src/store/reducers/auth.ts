@@ -4,6 +4,7 @@ import { ActionTypes } from '../constants';
 
 export interface IAuthState {
   loading: boolean;
+  hasError: boolean;
   sessionKey: string | null;
   login: string | null;
   sublogin: string | null;
@@ -11,6 +12,7 @@ export interface IAuthState {
 
 export const initialState: IAuthState = {
   loading: false,
+  hasError: false,
   sessionKey: null,
   login: null,
   sublogin: null,
@@ -29,6 +31,7 @@ export default {
         return {
           ...state,
           loading: false,
+          hasError: false,
           sessionKey: payload.sessionKey,
           login: payload.login,
           sublogin: payload.sublogin,
@@ -37,6 +40,8 @@ export default {
       [ActionTypes.AUTHENTICATE_FAILURE]: (state) => {
         return {
           ...state,
+          loading: false,
+          hasError: true,
           sessionKey: null,
           login: null,
           sublogin: null,
@@ -46,7 +51,18 @@ export default {
         return {
           ...state,
           loading: false,
+          hasError: false,
           sessionKey: null,
+        };
+      },
+      [ActionTypes.LOGOUT_SUCCESS]: (state) => {
+        return {
+          ...state,
+          loading: false,
+          hasError: false,
+          sessionKey: null,
+          login: null,
+          sublogin: null,
         };
       },
     },
