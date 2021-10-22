@@ -5,7 +5,7 @@ import { withRouter } from 'react-router-dom';
 
 import { authenticate } from '../../store/actions/auth';
 import { authIsLoggedInSelector, authLoadingSelector } from '../../store/selectors';
-import * as UI from "./styles";
+import * as UI from './styles';
 
 const LoginPage: React.FC<RouteComponentProps> = ({ history }) => {
   const dispatch = useDispatch();
@@ -36,7 +36,7 @@ const LoginPage: React.FC<RouteComponentProps> = ({ history }) => {
   const onSubmit = (event: FormEvent | MouseEvent) => {
     event.preventDefault();
     doLogin();
-  }
+  };
 
   return (
     <UI.Wrapper>
@@ -51,6 +51,6 @@ const LoginPage: React.FC<RouteComponentProps> = ({ history }) => {
       </UI.Form>
     </UI.Wrapper>
   );
-}
+};
 
 export default withRouter(LoginPage);

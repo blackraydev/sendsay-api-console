@@ -1,15 +1,15 @@
-import {all, put, call, takeLatest} from 'redux-saga/effects';
+import { all, put, call, takeLatest } from 'redux-saga/effects';
 import api from '../../helpers/sendsay';
 
 import { ActionTypes } from '../constants';
-import {authenticateSuccess, authenticateFailure} from '../actions/auth';
+import { authenticateSuccess, authenticateFailure } from '../actions/auth';
 
 export function* authenticateCheckSaga() {
   try {
     yield api.sendsay.request({
       action: 'pong',
     });
-  } catch (error: any) {
+  } catch (error) {
     if (error.id === 'error/auth/failed') {
       yield call(logoutSaga);
     }

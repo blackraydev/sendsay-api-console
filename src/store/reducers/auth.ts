@@ -25,7 +25,7 @@ export default {
           loading: true,
         };
       },
-      [ActionTypes.AUTHENTICATE_SUCCESS]: (state, {payload}) => {
+      [ActionTypes.AUTHENTICATE_SUCCESS]: (state, { payload }) => {
         return {
           ...state,
           loading: false,
