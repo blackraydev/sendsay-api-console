@@ -3,6 +3,7 @@ import api from '../../helpers/sendsay';
 
 import { ActionTypes } from '../constants';
 import { authenticateSuccess, authenticateFailure, logoutSuccess } from '../actions/auth';
+import { IError } from '../../models/IError';
 
 export function* authenticateCheckSaga() {
   try {
@@ -34,10 +35,15 @@ export function* authenticateSaga({ payload }: any) {
         sublogin: payload.sublogin,
       })
     );
-  } catch (error: any) {
-    console.log(error)
+  } catch (e: IError | any) {
     document.cookie = '';
-    yield put(authenticateFailure());
+
+    const error: IError = {
+      id: e?.id,
+      explain: e?.explain
+    };
+
+    yield put(authenticateFailure({ error }));
   }
 }
 

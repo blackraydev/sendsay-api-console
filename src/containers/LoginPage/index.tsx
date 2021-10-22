@@ -4,8 +4,10 @@ import { RouteComponentProps } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 
 import { checkForCyrillic } from '../../helpers/checkForCyrillic';
+import { isObjEmpty } from '../../helpers/isObjEmpty';
+import { stringifyError } from '../../helpers/stringifyError';
 import { useActions } from '../../hooks/useActions';
-import { authHasErrorInSelector, authIsLoggedInSelector, authLoadingSelector } from '../../store/selectors';
+import { authErrorInSelector, authIsLoggedInSelector, authLoadingSelector } from '../../store/selectors';
 import Button from '../../UI/Button';
 import Input from '../../UI/Input';
 import * as UI from './styles';
@@ -18,7 +20,7 @@ const LoginPage: React.FC<RouteComponentProps> = ({ history }) => {
   const [invalidLogin, setInvalidLogin] = useState(false);
   const [invalidPassword, setInvalidPassword] = useState(false);
   const loading = useSelector(authLoadingSelector);
-  const hasError = useSelector(authHasErrorInSelector);
+  const error = useSelector(authErrorInSelector);
   const isLoggedIn = useSelector(authIsLoggedInSelector);
 
   useEffect(() => {
@@ -75,14 +77,14 @@ const LoginPage: React.FC<RouteComponentProps> = ({ history }) => {
       <UI.LogoStyled src="/icons/logo.svg" alt="" />
       <UI.Form onSubmit={onSubmit} action="/">
         <UI.FormHeader>API-консолька</UI.FormHeader>
-        {hasError && (
+        {error && !isObjEmpty(error) && (
           <UI.ErrorWrapper>
             <UI.SmileWrapper>
               <UI.Smile src="/icons/meh.svg" alt="" />
             </UI.SmileWrapper>
             <UI.DescriptionWrapper>
               <UI.ErrorMessage>Вход не вышел</UI.ErrorMessage>
-              <UI.ErrorStatus>id: "error/auth/failed", explain: "wrong_credentials"</UI.ErrorStatus>
+              <UI.ErrorStatus>{stringifyError(error)}</UI.ErrorStatus>
             </UI.DescriptionWrapper>
           </UI.ErrorWrapper>
         )}

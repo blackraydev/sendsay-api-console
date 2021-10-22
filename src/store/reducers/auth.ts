@@ -1,10 +1,11 @@
 import { handleActions } from 'redux-actions';
+import { IError } from '../../models/IError';
 
 import { ActionTypes } from '../constants';
 
 export interface IAuthState {
   loading: boolean;
-  hasError: boolean;
+  error: IError;
   sessionKey: string | null;
   login: string | null;
   sublogin: string | null;
@@ -12,7 +13,7 @@ export interface IAuthState {
 
 export const initialState: IAuthState = {
   loading: false,
-  hasError: false,
+  error: {} as IError,
   sessionKey: null,
   login: null,
   sublogin: null,
@@ -31,17 +32,18 @@ export default {
         return {
           ...state,
           loading: false,
-          hasError: false,
+          error: {} as IError,
           sessionKey: payload.sessionKey,
           login: payload.login,
           sublogin: payload.sublogin,
         };
       },
-      [ActionTypes.AUTHENTICATE_FAILURE]: (state) => {
+      [ActionTypes.AUTHENTICATE_FAILURE]: (state, { payload }) => {
+        console.log(payload);
         return {
           ...state,
           loading: false,
-          hasError: true,
+          error: payload.error,
           sessionKey: null,
           login: null,
           sublogin: null,
@@ -51,7 +53,6 @@ export default {
         return {
           ...state,
           loading: false,
-          hasError: false,
           sessionKey: null,
         };
       },
@@ -59,7 +60,7 @@ export default {
         return {
           ...state,
           loading: false,
-          hasError: false,
+          error: {} as IError,
           sessionKey: null,
           login: null,
           sublogin: null,
