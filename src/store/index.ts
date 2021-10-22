@@ -3,16 +3,19 @@ import createSagaMiddleware from 'redux-saga';
 import {persistStore, persistReducer} from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
-import rootReducer from 'src/store/reducers/index';
-import rootSaga from 'src/store/sagas/index';
+import rootReducer from './reducers';
+import rootSaga from './sagas';
 
-const sagaMiddleware = createSagaMiddleware();
 const persistConfig = {
   key: 'root',
   storage,
 };
 
-const bindMiddleware = (middleware) => {
+const sagaMiddleware = createSagaMiddleware();
+const persistedReducer = persistReducer(persistConfig, rootReducer.auth)
+const reducer = combineReducers({ persistedReducer });
+
+const bindMiddleware = (middleware: any) => {
   if (process.env.NODE_ENV !== 'production') {
     const {composeWithDevTools} = require('redux-devtools-extension');
     return composeWithDevTools(applyMiddleware(...middleware));
@@ -20,11 +23,9 @@ const bindMiddleware = (middleware) => {
   return applyMiddleware(...middleware);
 };
 
-function configureStore(initialState = {}) {
-  const store = createStore(
-    combineReducers({
-      auth: persistReducer(persistConfig, rootReducer.auth),
-    }),
+const configureStore = (initialState = {}) => {
+  const store = createStore<any, any, any, any>(
+    reducer,
     initialState,
     bindMiddleware([sagaMiddleware])
   );
@@ -35,6 +36,7 @@ function configureStore(initialState = {}) {
   };
 
   store.runSagaTask();
+
   return {
     store,
     persistor,
@@ -42,3 +44,5 @@ function configureStore(initialState = {}) {
 }
 
 export default configureStore;
+
+export type RootState = ReturnType<typeof reducer>;

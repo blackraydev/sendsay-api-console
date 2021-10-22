@@ -1,8 +1,15 @@
-import {handleActions} from 'redux-actions';
+import { handleActions } from 'redux-actions';
 
-import {ActionTypes} from 'src/store/constants';
+import { ActionTypes } from '../constants';
 
-export const initialState = {
+export interface IAuthState {
+  loading: boolean;
+  sessionKey: string | null;
+  login: string | null;
+  sublogin: string | null;
+}
+
+export const initialState: IAuthState = {
   loading: false,
   sessionKey: null,
   login: null,
