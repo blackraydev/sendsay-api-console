@@ -39,7 +39,6 @@ export default {
         };
       },
       [ActionTypes.AUTHENTICATE_FAILURE]: (state, { payload }) => {
-        console.log(payload);
         return {
           ...state,
           loading: false,
