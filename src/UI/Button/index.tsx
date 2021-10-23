@@ -1,6 +1,6 @@
 import React, { MouseEvent, ReactElement } from 'react';
 
-import { ButtonType } from '../../types/buttonTypes';
+import { ButtonType } from '../../types/ButtonType';
 import * as UI from './styles';
 
 interface IButtonProps {

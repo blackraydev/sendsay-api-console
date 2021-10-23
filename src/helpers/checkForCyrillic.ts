@@ -1,4 +1,4 @@
 export const checkForCyrillic = (str: string): boolean => {
-  const cyrillicPattern = /^[\u0400-\u04FF]+$/;
+  const cyrillicPattern = /[а-яА-ЯЁё]/;
   return cyrillicPattern.test(str);
 };

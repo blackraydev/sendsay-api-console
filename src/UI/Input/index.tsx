@@ -1,27 +1,61 @@
-import React from 'react';
+import React, { Dispatch, SetStateAction, useEffect, useMemo, useState } from 'react';
+import InputTypes from '../../constants/inputTypes';
+import { checkForCyrillic } from '../../helpers/checkForCyrillic';
+import IInputRules from '../../models/IInputRules';
 
-import { ChangeEvent } from '../../types/eventTypes';
+import { ChangeEvent } from '../../types/EventTypes';
+import { InputType } from '../../types/InputType';
 import * as UI from './styles';
 
 interface IInputProps {
   value: string;
   onChange: (e: ChangeEvent) => void;
+  invalid?: boolean;
+  setInvalid?: Dispatch<SetStateAction<boolean>>;
   placeholder?: string;
-  passwordType?: boolean;
+  type?: InputType;
   label?: string;
   optional?: boolean;
-  invalid?: boolean;
+  rules?: IInputRules;
 }
 
 const Input: React.FC<IInputProps> = ({
   value,
   onChange,
+  invalid,
+  setInvalid,
   placeholder,
-  passwordType,
+  type,
   label,
   optional,
-  invalid,
+  rules,
 }) => {
+  const [userTyped, setUserTyped] = useState<boolean>(false);
+
+  const isValueInvalid = useMemo(() => {
+    return (
+      (rules?.required && !value) ||
+      (rules?.nonCyrillic && checkForCyrillic(value)) ||
+      (rules?.withoutSpace && value.includes(' '))
+    );
+  }, [value]);
+
+  useEffect(() => {
+    if (value) {
+      setUserTyped(true);
+    }
+  }, [value]);
+
+  useEffect(() => {
+    if (setInvalid) {
+      if (userTyped && isValueInvalid) {
+        setInvalid(true);
+      } else {
+        setInvalid(false);
+      }
+    }
+  }, [isValueInvalid]);
+
   return (
     <UI.InputWrapper>
       <UI.LabelWrapper>
@@ -32,7 +66,7 @@ const Input: React.FC<IInputProps> = ({
         value={value}
         onChange={onChange}
         placeholder={placeholder}
-        type={passwordType ? 'password' : 'text'}
+        type={type ? type : InputTypes.TEXT}
         invalid={invalid}
       />
     </UI.InputWrapper>
