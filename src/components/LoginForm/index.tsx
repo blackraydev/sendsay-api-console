@@ -10,7 +10,6 @@ import { IUser } from '../../models/IUser';
 import { isObjEmpty } from '../../helpers/isObjEmpty';
 import { IError } from '../../models/IError';
 import * as UI from './styles';
-import GithubLink from '../GithubLink';
 
 interface ILoginFormProps {
   authenticate: (user: IUser) => void;

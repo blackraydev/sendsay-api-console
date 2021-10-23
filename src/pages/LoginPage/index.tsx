@@ -1,4 +1,4 @@
-import React, { FormEvent, MouseEvent, useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { RouteComponentProps } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
@@ -6,9 +6,9 @@ import { withRouter } from 'react-router-dom';
 import { authErrorInSelector, authIsLoggedInSelector, authLoadingSelector } from '../../store/selectors';
 import { useActions } from '../../hooks/useActions';
 import LoginForm from '../../components/LoginForm';
-import * as UI from './styles';
 import Logo from '../../components/Logo';
 import GithubLink from '../../components/GithubLink';
+import * as UI from './styles';
 
 const LoginPage: React.FC<RouteComponentProps> = ({ history }) => {
   const { authenticate, authenticateCheck } = useActions();
