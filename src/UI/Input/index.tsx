@@ -1,5 +1,6 @@
 import React, { Dispatch, SetStateAction, useEffect, useMemo, useState } from 'react';
 import InputTypes from '../../constants/inputTypes';
+import VARS from '../../constants/vars';
 import { checkForCyrillic } from '../../helpers/checkForCyrillic';
 import IInputRules from '../../models/IInputRules';
 
@@ -47,12 +48,10 @@ const Input: React.FC<IInputProps> = ({
   }, [value]);
 
   useEffect(() => {
-    if (setInvalid) {
-      if (userTyped && isValueInvalid) {
-        setInvalid(true);
-      } else {
-        setInvalid(false);
-      }
+    if (userTyped && isValueInvalid) {
+      setInvalid && setInvalid(true);
+    } else {
+      setInvalid && setInvalid(false);
     }
   }, [isValueInvalid]);
 
@@ -60,7 +59,7 @@ const Input: React.FC<IInputProps> = ({
     <UI.InputWrapper>
       <UI.LabelWrapper>
         {label && <UI.Label invalid={invalid}>{label}</UI.Label>}
-        {optional && <UI.OptionalSpan>Опционально</UI.OptionalSpan>}
+        {optional && <UI.OptionalSpan>{VARS.OPTIONAL}</UI.OptionalSpan>}
       </UI.LabelWrapper>
       <UI.Input
         value={value}

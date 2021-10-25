@@ -7,6 +7,7 @@ enum VARS {
   GITHUB_NAME = '@blackraydev',
   GITHUB_LINK = 'https://github.com/blackraydev',
   FAILED_LOGIN = 'Вход не вышел',
+  OPTIONAL = 'Опционально',
 }
 
 export default VARS;
