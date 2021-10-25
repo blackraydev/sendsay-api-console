@@ -1,12 +1,12 @@
 import React from 'react';
-import {Provider} from 'react-redux';
-import {PersistGate} from 'redux-persist/integration/react';
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import createStore from './store';
-import LoginPage from './containers/LoginPage';
+import LoginPage from './pages/LoginPage';
 
-const {store, persistor} = createStore();
+const { store, persistor } = createStore();
 
 const App = () => {
   return (
@@ -22,6 +22,6 @@ const App = () => {
       </Provider>
     </Router>
   );
-}
+};
 
 export default App;

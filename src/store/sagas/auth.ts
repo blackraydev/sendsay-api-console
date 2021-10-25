@@ -1,15 +1,16 @@
-import { all, put, call, takeLatest } from 'redux-saga/effects';
+import { all, put, call, takeLatest, take } from 'redux-saga/effects';
 import api from '../../helpers/sendsay';
 
 import { ActionTypes } from '../constants';
-import { authenticateSuccess, authenticateFailure } from '../actions/auth';
+import { authenticateSuccess, authenticateFailure, logoutSuccess } from '../actions/auth';
+import { IError } from '../../models/IError';
 
 export function* authenticateCheckSaga() {
   try {
     yield api.sendsay.request({
       action: 'pong',
     });
-  } catch (error) {
+  } catch (error: any) {
     if (error.id === 'error/auth/failed') {
       yield call(logoutSaga);
     }
@@ -17,31 +18,37 @@ export function* authenticateCheckSaga() {
 }
 
 export function* authenticateSaga({ payload }: any) {
-  yield api.sendsay
-    .login({
-      login: payload.login,
-      sublogin: payload.sublogin,
-      password: payload.password,
-    })
-    .then(() => {
-      document.cookie = `sendsay_session=${api.sendsay.session}`;
-    })
-    .catch((err: any) => {
-      document.cookie = '';
-      console.log('err', err);
-    });
+  try {
+    yield api.sendsay
+      .login({
+        login: payload.login,
+        sublogin: payload.sublogin,
+        password: payload.password,
+      });
 
-  yield put(
-    authenticateSuccess({
-      sessionKey: api.sendsay.session,
-      login: payload.login,
-      sublogin: payload.sublogin,
-    })
-  );
+    document.cookie = `sendsay_session=${api.sendsay.session}`;
+
+    yield put(
+      authenticateSuccess({
+        sessionKey: api.sendsay.session,
+        login: payload.login,
+        sublogin: payload.sublogin,
+      })
+    );
+  } catch (e: IError | any) {
+    document.cookie = '';
+
+    const error: IError = {
+      id: e?.id,
+      explain: e?.explain
+    };
+
+    yield put(authenticateFailure({ error }));
+  }
 }
 
 export function* logoutSaga() {
-  yield put(authenticateFailure());
+  yield put(logoutSuccess());
   document.cookie = '';
 }
 
