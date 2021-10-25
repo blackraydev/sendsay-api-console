@@ -61,6 +61,10 @@ const RequestItem: React.FC<IRequestItemProps> = ({
     setShowDropdown((prev) => !prev);
   }, [setShowDropdown]);
 
+  useEffect(() => {
+    console.log(query, id);
+  }, [id]);
+
   return (
     <UI.ItemWrapper onClick={dropdownStateHandler} ref={itemRef}>
       <UI.Indicator status={status} />

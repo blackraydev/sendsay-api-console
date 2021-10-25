@@ -106,7 +106,13 @@ export default {
               return req;
             }
           });
-          newRequestsList = [newRequest, ...newRequestsList];
+          newRequestsList = [newRequest, ...newRequestsList]
+            .reverse()
+            .map((req, index) => {
+              req.id = index;
+              return req;
+            })
+            .reverse();
         } else {
           newRequestsList = [newRequest, ...state.allRequests].filter((_, index) => index < 20);
         }
@@ -139,7 +145,13 @@ export default {
               return req;
             }
           });
-          newRequestsList = [newRequest, ...newRequestsList];
+          newRequestsList = [newRequest, ...newRequestsList]
+            .reverse()
+            .map((req, index) => {
+              req.id = index;
+              return req;
+            })
+            .reverse();
         } else {
           newRequestsList = [newRequest, ...state.allRequests].filter((_, index) => index < 20);
         }
