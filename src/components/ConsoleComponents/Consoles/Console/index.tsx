@@ -1,5 +1,6 @@
 import React, { Dispatch, SetStateAction, useEffect, useMemo, useRef, useState } from 'react';
 import { StatusTypes } from '../../../../constants/statusTypes';
+import { usePrevious } from '../../../../hooks/usePrevious';
 import { IRequest } from '../../../../models/IRequest';
 import * as UI from './styles';
 
@@ -13,6 +14,9 @@ interface IConsoleProps {
 const Console: React.FC<IConsoleProps> = ({ headerText, request, setRequest, readonly }) => {
   const [value, setValue] = useState<string>('');
   const consoleRef = useRef<any>(null);
+
+  const previousValue = usePrevious<string>(value);
+  const previousQuery = usePrevious<string>(request.query);
 
   const { response, status, jsonInvalid } = request;
 
@@ -32,8 +36,12 @@ const Console: React.FC<IConsoleProps> = ({ headerText, request, setRequest, rea
       return jsonResponse !== '""' ? jsonResponse : '';
     }
 
+    if (previousValue == previousQuery || previousValue == request.query) {
+      return value;
+    }
+
     return request.query;
-  }, [request, value, response]);
+  }, [request, value, response, previousValue, previousQuery]);
 
   return (
     <UI.ConsoleWrapper>

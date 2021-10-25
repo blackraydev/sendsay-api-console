@@ -23,7 +23,9 @@ export const HeaderText = styled.p`
   margin-left: 20px;
 `;
 
-export const RightPart = styled(HeaderPart)``;
+export const RightPart = styled(HeaderPart)`
+  margin-right: -7px;
+`;
 
 export const UserData = styled.div`
   display: flex;
