@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useEffect, useMemo, useRef, useState } from 'react';
+import React, { forwardRef, useEffect, useMemo, useState } from 'react';
 import { StatusTypes } from '../../../../constants/statusTypes';
 import { usePrevious } from '../../../../hooks/usePrevious';
 import { IRequest } from '../../../../models/IRequest';
@@ -11,9 +11,8 @@ interface IConsoleProps {
   readonly?: boolean;
 }
 
-const Console: React.FC<IConsoleProps> = ({ headerText, request, setRequest, readonly }) => {
+const Console = forwardRef(({ headerText, request, setRequest, readonly }: IConsoleProps, consoleRef: any) => {
   const [value, setValue] = useState<string>('');
-  const consoleRef = useRef<any>(null);
 
   const previousValue = usePrevious<string>(value);
   const previousQuery = usePrevious<string>(request.query);
@@ -44,10 +43,9 @@ const Console: React.FC<IConsoleProps> = ({ headerText, request, setRequest, rea
   }, [request, value, response, previousValue, previousQuery]);
 
   return (
-    <UI.ConsoleWrapper>
+    <UI.ConsoleWrapper ref={consoleRef}>
       <UI.ConsoleHeader>{headerText}:</UI.ConsoleHeader>
       <UI.ConsoleArea
-        ref={consoleRef}
         value={consoleValue}
         readOnly={readonly}
         onChange={(e) => setValue(e.target.value)}
@@ -55,6 +53,6 @@ const Console: React.FC<IConsoleProps> = ({ headerText, request, setRequest, rea
       />
     </UI.ConsoleWrapper>
   );
-};
+});
 
 export default Console;

@@ -14,6 +14,7 @@ export const ConsolesWrapper = styled.div`
 export const Delimiter = styled.div`
   margin-top: -50px;
   cursor: pointer;
+  padding: 0 5px;
 
   &:drag {
     cursor: col-resize;

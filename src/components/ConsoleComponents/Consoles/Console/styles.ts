@@ -7,19 +7,19 @@ interface IConsoleStylesProps {
 
 export const ConsoleWrapper = styled.div`
   display: flex;
-  flex: 1;
   flex-direction: column;
   jusfify-content: flex-start;
   align-items: flex-start;
   padding: 10px 15px 15px 15px;
   height: 100%;
+  width: 100%;
 
   &:first-of-type {
-    padding-right: 3px;
+    padding-right: 0px;
   }
 
   &:last-of-type {
-    padding-left: 3px;
+    padding-left: 0px;
   }
 `;
 
