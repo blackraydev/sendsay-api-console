@@ -48,12 +48,10 @@ const Input: React.FC<IInputProps> = ({
   }, [value]);
 
   useEffect(() => {
-    if (setInvalid) {
-      if (userTyped && isValueInvalid) {
-        setInvalid(true);
-      } else {
-        setInvalid(false);
-      }
+    if (userTyped && isValueInvalid) {
+      setInvalid && setInvalid(true);
+    } else {
+      setInvalid && setInvalid(false);
     }
   }, [isValueInvalid]);
 
