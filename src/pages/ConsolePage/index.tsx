@@ -12,18 +12,28 @@ import {
   authLoginInSelector,
   authSubloginInSelector,
   requestAllSelector,
+  requestLoadingSelector,
   requestSelector,
 } from '../../store/selectors';
 import * as UI from './styles';
 
 const ConsolePage: React.FC<RouteComponentProps> = ({ history }) => {
-  const { logout, setRequest, setResponse, jsonInvalid, clearRequest } = useActions();
+  const {
+    logout,
+    setRequest,
+    setResponse,
+    jsonInvalid,
+    clearRequest,
+    removeRequest,
+    removeAllRequests,
+  } = useActions();
 
   const login = useSelector(authLoginInSelector);
   const sublogin = useSelector(authSubloginInSelector);
   const isLoggedIn = useSelector(authIsLoggedInSelector);
   const request = useSelector(requestSelector);
   const allRequests = useSelector(requestAllSelector);
+  const isLoading = useSelector(requestLoadingSelector);
 
   useEffect(() => {
     clearRequest();
@@ -41,13 +51,23 @@ const ConsolePage: React.FC<RouteComponentProps> = ({ history }) => {
     logout,
   };
 
+  const requestHistoryProps = {
+    setRequest,
+    setResponse,
+    removeRequest,
+    removeAllRequests,
+    allRequests,
+  };
+
   const consolesProps = {
     request,
     setRequest,
   };
 
   const footerProps = {
+    isLoading,
     request,
+    setRequest,
     setResponse,
     jsonInvalid,
   };
@@ -55,7 +75,7 @@ const ConsolePage: React.FC<RouteComponentProps> = ({ history }) => {
   return (
     <UI.Wrapper>
       <Header {...headerProps} />
-      <RequestHistory allRequests={allRequests} />
+      <RequestHistory {...requestHistoryProps} />
       <Consoles {...consolesProps} />
       <Footer {...footerProps} />
     </UI.Wrapper>

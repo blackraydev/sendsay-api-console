@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useEffect, useMemo, useState } from 'react';
+import React, { Dispatch, SetStateAction, useEffect, useMemo, useRef, useState } from 'react';
 import { StatusTypes } from '../../../../constants/statusTypes';
 import { IRequest } from '../../../../models/IRequest';
 import * as UI from './styles';
@@ -12,6 +12,8 @@ interface IConsoleProps {
 
 const Console: React.FC<IConsoleProps> = ({ headerText, request, setRequest, readonly }) => {
   const [value, setValue] = useState<string>('');
+  const consoleRef = useRef<any>(null);
+
   const { response, status, jsonInvalid } = request;
 
   useEffect(() => {
@@ -27,23 +29,17 @@ const Console: React.FC<IConsoleProps> = ({ headerText, request, setRequest, rea
   const consoleValue = useMemo(() => {
     if (readonly) {
       const jsonResponse = JSON.stringify(response, null, 3);
-
-      if (jsonResponse !== '""') {
-        return JSON.stringify(response, null, 3);
-      }
+      return jsonResponse !== '""' ? jsonResponse : '';
     }
 
-    return value;
-  }, [readonly, value, response]);
-
-  useEffect(() => {
-    console.log(response);
-  }, [response]);
+    return request.query;
+  }, [request, value, response]);
 
   return (
     <UI.ConsoleWrapper>
       <UI.ConsoleHeader>{headerText}:</UI.ConsoleHeader>
       <UI.ConsoleArea
+        ref={consoleRef}
         value={consoleValue}
         readOnly={readonly}
         onChange={(e) => setValue(e.target.value)}

@@ -16,6 +16,8 @@ enum VARS {
   FORMAT = 'Форматировать',
   REQUEST = 'Запрос',
   RESPONSE = 'Ответ',
+  EMPTY = 'EMPTY',
+  COPIED = 'Скопировано',
 }
 
 export default VARS;

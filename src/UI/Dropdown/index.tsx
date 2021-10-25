@@ -1,25 +1,55 @@
-import React, { forwardRef, useEffect } from 'react';
+import React, { Dispatch, forwardRef, SetStateAction, useCallback, useEffect } from 'react';
 
+import { Action, ActionFunctionAny } from 'redux-actions';
 import VARS from '../../constants/vars';
+import { IRequest } from '../../models/IRequest';
 import * as UI from './styles';
 
-const Dropdown = forwardRef((props, ref: any) => {
-  useEffect(() => {
-    const { x } = ref.current.getBoundingClientRect();
+interface IDropdownProps {
+  request: IRequest;
+  setRequest: ActionFunctionAny<Action<any>>;
+  setResponse: ActionFunctionAny<Action<any>>;
+  removeRequest: ActionFunctionAny<Action<any>>;
+  setShowCopied: Dispatch<SetStateAction<boolean>>;
+}
 
-    if (x < 0) {
-      ref.current.style.left = 0;
-    }
-  }, [ref]);
+const Dropdown = forwardRef(
+  ({ request, setRequest, setResponse, removeRequest, setShowCopied }: IDropdownProps, ref: any) => {
+    useEffect(() => {
+      const { x } = ref.current.getBoundingClientRect();
 
-  return (
-    <UI.Wrapper ref={ref}>
-      <UI.Action>{VARS.EXECUTE}</UI.Action>
-      <UI.Action>{VARS.COPY}</UI.Action>
-      <UI.Separator />
-      <UI.Action>{VARS.DELETE}</UI.Action>
-    </UI.Wrapper>
-  );
-});
+      if (x < 0) {
+        ref.current.style.left = 0;
+      }
+    }, [ref]);
+
+    const executeRequestHandler = useCallback(() => {
+      setRequest({ request });
+      setResponse(request);
+    }, []);
+
+    const copyRequestHandler = useCallback(() => {
+      const { query } = request;
+      navigator.clipboard.writeText(query);
+
+      setShowCopied(true);
+
+      setTimeout(() => setShowCopied(false), 1250);
+    }, [request, setShowCopied]);
+
+    const removeRequestHandler = useCallback(() => {
+      removeRequest({ request });
+    }, [removeRequest]);
+
+    return (
+      <UI.Wrapper ref={ref}>
+        <UI.Action onClick={executeRequestHandler}>{VARS.EXECUTE}</UI.Action>
+        <UI.Action onClick={copyRequestHandler}>{VARS.COPY}</UI.Action>
+        <UI.Separator />
+        <UI.Action onClick={removeRequestHandler}>{VARS.DELETE}</UI.Action>
+      </UI.Wrapper>
+    );
+  }
+);
 
 export default Dropdown;

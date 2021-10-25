@@ -40,15 +40,7 @@ export const ClearHistory = styled.div`
   align-items: center;
   padding: 10px 15px;
   border-left: 1px solid ${COLORS.GRAY_LIGHT};
-
-  &:before {
-    content: '';
-    position: absolute;
-    height: 100%;
-    width: 15px;
-    left: -16px;
-    background: linear-gradient(269.93deg, #f6f6f6 0.06%, rgba(246, 246, 246, 0) 99.93%);
-  }
+  box-shadow: -15px 0 15px ${COLORS.WHITE_LIGHT};
 `;
 
 export const ClearIcon = styled.img``;

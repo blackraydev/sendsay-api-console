@@ -20,16 +20,3 @@ export const FormHeader = styled.p`
   font-weight: 400;
   margin-bottom: 20px;
 `;
-
-export const Loader = styled.img`
-  animation: loader 1.5s infinite linear;
-
-  @keyframes loader {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
-  }
-`;

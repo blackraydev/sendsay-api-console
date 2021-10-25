@@ -2,6 +2,7 @@ enum COLORS {
   BLACK = '#0D0D0D',
   WHITE_BRIGHT = '#FFFFFF',
   WHITE_MEDIUM = '#F7F7F7',
+  WHITE_LIGHT = '#F6F6F6',
   GRAY_SUPER_LIGHT = 'rgba(0, 0, 0, 0.1)',
   GRAY_LIGHT = 'rgba(0, 0, 0, 0.2)',
   GRAY_MEDIUM = 'rgba(0, 0, 0, 0.4)',

@@ -10,6 +10,7 @@ import { IUser } from '../../../models/IUser';
 import { isObjEmpty } from '../../../helpers/isObjEmpty';
 import { IError } from '../../../models/IError';
 import * as UI from './styles';
+import Loader from '../../CommonComponents/Loader';
 
 interface ILoginFormProps {
   authenticate: (user: IUser) => void;
@@ -73,7 +74,7 @@ const LoginForm: React.FC<ILoginFormProps> = ({ authenticate, loading, error }) 
         type={InputTypes.PASSWORD}
       />
       <Button onClick={onSubmit} type={ButtonTypes.SUBMIT} disabled={buttonDisabled}>
-        {loading ? <UI.Loader src="/icons/loader.svg" alt="" /> : VARS.ENTER}
+        {loading ? <Loader /> : VARS.ENTER}
       </Button>
     </UI.Form>
   );
