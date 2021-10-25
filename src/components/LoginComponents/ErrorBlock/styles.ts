@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import COLORS from '../../constants/colors';
+import COLORS from '../../../constants/colors';
 
 export const ErrorWrapper = styled.div`
   display: flex;

@@ -1,8 +1,8 @@
 import React from 'react';
-import VARS from '../../constants/vars';
+import VARS from '../../../constants/vars';
 
-import { stringifyError } from '../../helpers/stringifyError';
-import { IError } from '../../models/IError';
+import { stringifyError } from '../../../helpers/stringifyError';
+import { IError } from '../../../models/IError';
 import * as UI from './styles';
 
 interface IErrorBlockProps {

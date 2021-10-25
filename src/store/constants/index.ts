@@ -7,5 +7,10 @@ export const ActionTypes = keyMirror({
   AUTHENTICATE_FAILURE: undefined,
   LOGOUT: undefined,
   LOGOUT_SUCCESS: undefined,
-  LOGOUT_FAILURE: undefined,
+  CLEAR_REQUEST: undefined,
+  SET_REQUEST: undefined,
+  SET_RESPONSE: undefined,
+  SET_RESPONSE_SUCCESS: undefined,
+  SET_RESPONSE_FAILED: undefined,
+  JSON_INVALID: undefined,
 });

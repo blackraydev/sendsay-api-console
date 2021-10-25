@@ -1,4 +1,4 @@
-import { all, put, call, takeLatest, take } from 'redux-saga/effects';
+import { all, put, call, takeLatest } from 'redux-saga/effects';
 import api from '../../helpers/sendsay';
 
 import { ActionTypes } from '../constants';
