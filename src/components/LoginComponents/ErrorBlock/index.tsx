@@ -13,7 +13,7 @@ const ErrorBlock: React.FC<IErrorBlockProps> = ({ error }) => {
   return (
     <UI.ErrorWrapper>
       <UI.SmileWrapper>
-        <UI.Smile src="/icons/meh.svg" alt="" />
+        <UI.Smile src="/sendsay-api-console/icons/meh.svg" alt="" />
       </UI.SmileWrapper>
       <UI.DescriptionWrapper>
         <UI.ErrorMessage>{VARS.FAILED_LOGIN}</UI.ErrorMessage>
