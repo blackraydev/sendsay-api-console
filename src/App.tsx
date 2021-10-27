@@ -11,7 +11,7 @@ const { store, persistor } = createStore();
 
 const App = () => {
   return (
-    <Router basename={process.env.PUBLIC_URL}>
+    <Router>
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
           <Switch>
