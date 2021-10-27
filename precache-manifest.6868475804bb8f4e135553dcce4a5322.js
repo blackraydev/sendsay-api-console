@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "d63f4e31fe174b78fce8e5d0b9b2c6b3",
+    "revision": "a9c0e3d08702835d22bd98d2713e6616",
     "url": "https://blackraydev.github.io/sendsay-api-console/index.html"
   },
   {
-    "revision": "bdd4b1e236ec02adbcab",
+    "revision": "b6c14eb0c4b016ff9157",
     "url": "https://blackraydev.github.io/sendsay-api-console/static/css/main.d29117dd.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "https://blackraydev.github.io/sendsay-api-console/static/js/2.0e9156fc.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "bdd4b1e236ec02adbcab",
-    "url": "https://blackraydev.github.io/sendsay-api-console/static/js/main.0951f6ee.chunk.js"
+    "revision": "b6c14eb0c4b016ff9157",
+    "url": "https://blackraydev.github.io/sendsay-api-console/static/js/main.c3d1d795.chunk.js"
   },
   {
     "revision": "32a332f6bf604d7c56de",
