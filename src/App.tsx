@@ -15,10 +15,10 @@ const App = () => {
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
           <Switch>
-            <Route path="/console">
+            <Route path="/sendsay-api-console/console">
               <ConsolePage />
             </Route>
-            <Route path="/">
+            <Route path="/sendsay-api-console">
               <LoginPage />
             </Route>
           </Switch>

@@ -41,7 +41,7 @@ const ConsolePage: React.FC<RouteComponentProps> = ({ history }) => {
 
   useEffect(() => {
     if (!isLoggedIn) {
-      history.push('/');
+      history.push('/sendsay-api-console');
     }
   }, [isLoggedIn]);
 
