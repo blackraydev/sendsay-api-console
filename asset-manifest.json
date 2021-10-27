@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "https://blackraydev.github.io/sendsay-api-console/static/css/main.d29117dd.chunk.css",
-    "main.js": "https://blackraydev.github.io/sendsay-api-console/static/js/main.33546ffb.chunk.js",
-    "main.js.map": "https://blackraydev.github.io/sendsay-api-console/static/js/main.33546ffb.chunk.js.map",
+    "main.js": "https://blackraydev.github.io/sendsay-api-console/static/js/main.bb656cdf.chunk.js",
+    "main.js.map": "https://blackraydev.github.io/sendsay-api-console/static/js/main.bb656cdf.chunk.js.map",
     "runtime-main.js": "https://blackraydev.github.io/sendsay-api-console/static/js/runtime-main.7dad8b21.js",
     "runtime-main.js.map": "https://blackraydev.github.io/sendsay-api-console/static/js/runtime-main.7dad8b21.js.map",
     "static/js/2.0e9156fc.chunk.js": "https://blackraydev.github.io/sendsay-api-console/static/js/2.0e9156fc.chunk.js",
     "static/js/2.0e9156fc.chunk.js.map": "https://blackraydev.github.io/sendsay-api-console/static/js/2.0e9156fc.chunk.js.map",
     "index.html": "https://blackraydev.github.io/sendsay-api-console/index.html",
-    "precache-manifest.8d9a51b4fabb4fd156953ba9d5be37c6.js": "https://blackraydev.github.io/sendsay-api-console/precache-manifest.8d9a51b4fabb4fd156953ba9d5be37c6.js",
+    "precache-manifest.2b66564426724f6127f63711cb984820.js": "https://blackraydev.github.io/sendsay-api-console/precache-manifest.2b66564426724f6127f63711cb984820.js",
     "service-worker.js": "https://blackraydev.github.io/sendsay-api-console/service-worker.js",
     "static/css/main.d29117dd.chunk.css.map": "https://blackraydev.github.io/sendsay-api-console/static/css/main.d29117dd.chunk.css.map",
     "static/js/2.0e9156fc.chunk.js.LICENSE.txt": "https://blackraydev.github.io/sendsay-api-console/static/js/2.0e9156fc.chunk.js.LICENSE.txt"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.7dad8b21.js",
     "static/js/2.0e9156fc.chunk.js",
     "static/css/main.d29117dd.chunk.css",
-    "static/js/main.33546ffb.chunk.js"
+    "static/js/main.bb656cdf.chunk.js"
   ]
 }
