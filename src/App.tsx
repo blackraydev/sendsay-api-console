@@ -18,7 +18,7 @@ const App = () => {
             <Route path="/sendsay-api-console/console">
               <ConsolePage />
             </Route>
-            <Route path="/sendsay-api-console">
+            <Route path="/">
               <LoginPage />
             </Route>
           </Switch>
