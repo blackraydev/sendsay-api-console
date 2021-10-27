@@ -38,7 +38,7 @@ const RequestHistory: React.FC<IRequestHistoryProps> = ({
         ))}
       </UI.HistoryWrapper>
       <UI.ClearHistory onClick={clearHistoryHandler}>
-        <UI.ClearIcon src="/icons/cross.svg" />
+        <UI.ClearIcon src="/sendsay-api-console/icons/cross.svg" />
       </UI.ClearHistory>
     </UI.Wrapper>
   );

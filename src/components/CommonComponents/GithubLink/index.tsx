@@ -6,7 +6,7 @@ import * as UI from './styles';
 const GithubLink = () => {
   return (
     <UI.LinkWrapper>
-      <UI.CodeLogo src="/icons/code.svg" />
+      <UI.CodeLogo src="/sendsay-api-console/icons/code.svg" />
       <UI.WithSpan>with ❤️ by </UI.WithSpan>
       <UI.Link href={VARS.GITHUB_LINK} target="_blank" rel="noreferrer">
         {VARS.GITHUB_NAME}

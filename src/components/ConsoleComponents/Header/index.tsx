@@ -30,7 +30,7 @@ const Header: React.FC<IHeaderProps> = ({ login, sublogin, logout }) => {
         </UI.UserData>
         <UI.Logout onClick={logout}>
           <UI.LogoutText>{VARS.LOGOUT}</UI.LogoutText>
-          <UI.LogoutIcon src="/icons/log-out.svg" />
+          <UI.LogoutIcon src="/sendsay-api-console/icons/log-out.svg" />
         </UI.Logout>
         <FullScreen />
       </UI.RightPart>
