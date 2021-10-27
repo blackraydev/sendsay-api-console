@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "32880e6130617edc0ad856c891fc7c8b",
+    "revision": "0064f824824e75b1f21bbb8ef5f09dab",
     "url": "/sendsay-api-console/index.html"
   },
   {
-    "revision": "78c3e4c5b987c62b8afd",
+    "revision": "3322e8baa217f769e04b",
     "url": "/sendsay-api-console/static/css/main.d29117dd.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/sendsay-api-console/static/js/2.44a5e476.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "78c3e4c5b987c62b8afd",
-    "url": "/sendsay-api-console/static/js/main.b9d516d3.chunk.js"
+    "revision": "3322e8baa217f769e04b",
+    "url": "/sendsay-api-console/static/js/main.441c76ae.chunk.js"
   },
   {
     "revision": "d64c2831dabeba405b8f",
