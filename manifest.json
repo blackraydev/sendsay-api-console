@@ -8,27 +8,27 @@
       "type": "image/x-icon"
     },
     {
-      "src": "/icons/logo.svg",
+      "src": "/sendsay-api-console/icons/logo.svg",
       "purpose": "maskable any",
       "sizes": "any"
     },
     {
-      "src": "/icons/code.svg",
+      "src": "/sendsay-api-console/icons/code.svg",
       "purpose": "maskable any",
       "sizes": "any"
     },
     {
-      "src": "/icons/loader.svg",
+      "src": "/sendsay-api-console/icons/loader.svg",
       "purpose": "maskable any",
       "sizes": "any"
     },
     {
-      "src": "/icons/log-out.svg",
+      "src": "/sendsay-api-console/icons/log-out.svg",
       "purpose": "maskable any",
       "sizes": "any"
     },
     {
-      "src": "/icons/cross.svg",
+      "src": "/sendsay-api-console/icons/cross.svg",
       "purpose": "maskable any",
       "sizes": "any"
     }
