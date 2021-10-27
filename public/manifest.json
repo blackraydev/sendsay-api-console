@@ -8,23 +8,23 @@
       "type": "image/x-icon"
     },
     {
-      "src": "/icons/logo.svg",
+      "src": "./icons/logo.svg",
       "sizes": "115x30"
     },
     {
-      "src": "/icons/code.svg",
+      "src": "./icons/code.svg",
       "sizes": "20x20"
     },
     {
-      "src": "/icons/loader.svg",
+      "src": "./icons/loader.svg",
       "sizes": "20x20"
     },
     {
-      "src": "/icons/log-out.svg",
+      "src": "./icons/log-out.svg",
       "sizes": "20x20"
     },
     {
-      "src": "/icons/cross.svg",
+      "src": "./icons/cross.svg",
       "sizes": "20x20"
     }
   ],
