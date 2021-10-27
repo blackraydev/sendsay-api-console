@@ -8,4 +8,8 @@ export const Wrapper = styled.div`
   flex-direction: column;
   overflow: scroll;
   background-color: ${COLORS.WHITE_MEDIUM};
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;

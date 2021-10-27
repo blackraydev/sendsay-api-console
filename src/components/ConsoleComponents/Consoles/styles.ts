@@ -9,6 +9,10 @@ export const ConsolesWrapper = styled.div`
   height: 100%;
   overflow: scroll;
   background-color: ${COLORS.WHITE_BRIGHT};
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 export const Delimiter = styled.div`
