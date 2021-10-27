@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "https://blackraydev.github.io/sendsay-api-console/precache-manifest.b151dbb4bc77be40a5e05657268a2560.js"
+  "https://blackraydev.github.io/sendsay-api-console/precache-manifest.0d177f92834790d1514babb3c4e189d0.js"
 );
 
 self.addEventListener('message', (event) => {
