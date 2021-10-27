@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Sendsay API Console",
+  "name": "Sendsay API Console",
   "icons": [
     {
       "src": "favicon.ico",
@@ -8,24 +8,29 @@
       "type": "image/x-icon"
     },
     {
-      "src": "./icons/logo.svg",
-      "sizes": "115x30"
+      "src": "/icons/logo.svg",
+      "purpose": "maskable any",
+      "sizes": "any"
     },
     {
-      "src": "./icons/code.svg",
-      "sizes": "20x20"
+      "src": "/icons/code.svg",
+      "purpose": "maskable any",
+      "sizes": "any"
     },
     {
-      "src": "./icons/loader.svg",
-      "sizes": "20x20"
+      "src": "/icons/loader.svg",
+      "purpose": "maskable any",
+      "sizes": "any"
     },
     {
-      "src": "./icons/log-out.svg",
-      "sizes": "20x20"
+      "src": "/icons/log-out.svg",
+      "purpose": "maskable any",
+      "sizes": "any"
     },
     {
-      "src": "./icons/cross.svg",
-      "sizes": "20x20"
+      "src": "/icons/cross.svg",
+      "purpose": "maskable any",
+      "sizes": "any"
     }
   ],
   "start_url": ".",
