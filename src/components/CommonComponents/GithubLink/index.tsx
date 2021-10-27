@@ -1,6 +1,6 @@
 import React from 'react';
 
-import VARS from '../../constants/vars';
+import VARS from '../../../constants/vars';
 import * as UI from './styles';
 
 const GithubLink = () => {

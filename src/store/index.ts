@@ -6,14 +6,20 @@ import storage from 'redux-persist/lib/storage';
 import rootReducer from './reducers';
 import rootSaga from './sagas';
 
-const persistConfig = {
+const persistAuthConfig = {
   key: 'root',
   storage,
 };
 
+const persistRequestConfig = {
+  key: 'request',
+  storage,
+};
+
 const sagaMiddleware = createSagaMiddleware();
-const persistedReducer = persistReducer(persistConfig, rootReducer.auth);
-const reducer = combineReducers({ persistedReducer });
+const persistedAuthReducer = persistReducer(persistAuthConfig, rootReducer.auth);
+const persistedRequestReducer = persistReducer(persistRequestConfig, rootReducer.request);
+const reducer = combineReducers({ persistedAuthReducer, persistedRequestReducer });
 
 const bindMiddleware = (middleware: any) => {
   if (process.env.NODE_ENV !== 'production') {

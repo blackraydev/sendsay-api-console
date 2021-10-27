@@ -8,6 +8,16 @@ enum VARS {
   GITHUB_LINK = 'https://github.com/blackraydev',
   FAILED_LOGIN = 'Вход не вышел',
   OPTIONAL = 'Опционально',
+  LOGOUT = 'Выйти',
+  EXECUTE = 'Выполнить',
+  COPY = 'Скопировать',
+  DELETE = 'Удалить',
+  SEND = 'Отправить',
+  FORMAT = 'Форматировать',
+  REQUEST = 'Запрос',
+  RESPONSE = 'Ответ',
+  EMPTY = 'EMPTY',
+  COPIED = 'Скопировано',
 }
 
 export default VARS;
