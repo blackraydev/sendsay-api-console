@@ -15,10 +15,10 @@ const App = () => {
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
           <Switch>
-            <Route path="/console">
+            <Route path={`${process.env.PUBLIC_URL}/console`}>
               <ConsolePage />
             </Route>
-            <Route path="/">
+            <Route path={`${process.env.PUBLIC_URL}/`}>
               <LoginPage />
             </Route>
           </Switch>

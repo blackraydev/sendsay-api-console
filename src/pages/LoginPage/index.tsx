@@ -23,7 +23,7 @@ const LoginPage: React.FC<RouteComponentProps> = ({ history }) => {
 
   useEffect(() => {
     if (isLoggedIn) {
-      history.push('/console');
+      history.push(`${process.env.PUBLIC_URL}/console`);
     }
   }, [isLoggedIn]);
 
