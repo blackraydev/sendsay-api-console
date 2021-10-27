@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/sendsay-api-console/static/css/main.d29117dd.chunk.css",
-    "main.js": "/sendsay-api-console/static/js/main.d47f9804.chunk.js",
-    "main.js.map": "/sendsay-api-console/static/js/main.d47f9804.chunk.js.map",
+    "main.js": "/sendsay-api-console/static/js/main.2195da7c.chunk.js",
+    "main.js.map": "/sendsay-api-console/static/js/main.2195da7c.chunk.js.map",
     "runtime-main.js": "/sendsay-api-console/static/js/runtime-main.161718cb.js",
     "runtime-main.js.map": "/sendsay-api-console/static/js/runtime-main.161718cb.js.map",
-    "static/js/2.44a5e476.chunk.js": "/sendsay-api-console/static/js/2.44a5e476.chunk.js",
-    "static/js/2.44a5e476.chunk.js.map": "/sendsay-api-console/static/js/2.44a5e476.chunk.js.map",
+    "static/js/2.3ce188b8.chunk.js": "/sendsay-api-console/static/js/2.3ce188b8.chunk.js",
+    "static/js/2.3ce188b8.chunk.js.map": "/sendsay-api-console/static/js/2.3ce188b8.chunk.js.map",
     "index.html": "/sendsay-api-console/index.html",
-    "precache-manifest.fec99da9b5d6fed1444e34af9f68a4c7.js": "/sendsay-api-console/precache-manifest.fec99da9b5d6fed1444e34af9f68a4c7.js",
+    "precache-manifest.67d60c0c1bc7deca261fb94b284e48f4.js": "/sendsay-api-console/precache-manifest.67d60c0c1bc7deca261fb94b284e48f4.js",
     "service-worker.js": "/sendsay-api-console/service-worker.js",
     "static/css/main.d29117dd.chunk.css.map": "/sendsay-api-console/static/css/main.d29117dd.chunk.css.map",
-    "static/js/2.44a5e476.chunk.js.LICENSE.txt": "/sendsay-api-console/static/js/2.44a5e476.chunk.js.LICENSE.txt"
+    "static/js/2.3ce188b8.chunk.js.LICENSE.txt": "/sendsay-api-console/static/js/2.3ce188b8.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.161718cb.js",
-    "static/js/2.44a5e476.chunk.js",
+    "static/js/2.3ce188b8.chunk.js",
     "static/css/main.d29117dd.chunk.css",
-    "static/js/main.d47f9804.chunk.js"
+    "static/js/main.2195da7c.chunk.js"
   ]
 }
