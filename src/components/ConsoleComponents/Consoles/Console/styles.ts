@@ -6,6 +6,7 @@ interface IConsoleStylesProps {
 }
 
 export const ConsoleWrapper = styled.div`
+  z-index: 3;
   display: flex;
   flex-direction: column;
   jusfify-content: flex-start;
@@ -42,4 +43,5 @@ export const ConsoleArea = styled.textarea<IConsoleStylesProps>`
   font-family: Monaco;
   font-size: 14px;
   resize: none;
+  cursor: text;
 `;

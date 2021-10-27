@@ -3,6 +3,7 @@ import COLORS from '../../../constants/colors';
 import GithubLink from '../../CommonComponents/GithubLink';
 
 export const FooterWrapper = styled.div`
+  z-index: 4;
   position: absolute;
   bottom: 0;
   display: flex;

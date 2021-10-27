@@ -13,7 +13,6 @@ interface IConsolesProps {
 }
 
 const Consoles: React.FC<IConsolesProps> = ({ request, setRequest }) => {
-  const [initialState, setInitialState] = useState<boolean>(false);
   const [mouseDown, setMouseDown] = useState<boolean>(false);
   const [xPos, setXPos] = useState<number>(0);
   const previousXPos = usePrevious<number>(xPos);
@@ -23,6 +22,18 @@ const Consoles: React.FC<IConsolesProps> = ({ request, setRequest }) => {
 
   const requestConsoleRef = useRef<any>(null);
   const responseConsoleRef = useRef<any>(null);
+
+  useEffect(() => {
+    document.addEventListener('mousemove', documentMouseMoveHandler);
+    document.addEventListener('mouseup', documentMouseUpHandler);
+    document.addEventListener('mousedown', documentMouseDownHandler);
+
+    return () => {
+      document.removeEventListener('mousemove', documentMouseMoveHandler);
+      document.removeEventListener('mouseup', documentMouseUpHandler);
+      document.removeEventListener('mousedown', documentMouseDownHandler);
+    };
+  }, []);
 
   const requestConsolePxWidth = useMemo(() => {
     const consoleElem = requestConsoleRef.current;
@@ -42,25 +53,33 @@ const Consoles: React.FC<IConsolesProps> = ({ request, setRequest }) => {
     }
   }, [responseConsoleRef.current]);
 
-  const delimiterMouseDownHandler = useCallback(() => {
+  const delimiterMouseDownHandler = useCallback((e: any) => {
+    e.preventDefault();
+    e.stopPropagation();
     setMouseDown(true);
   }, []);
 
-  const delimiterMouseUpHandler = useCallback(() => {
+  const delimiterMouseUpHandler = useCallback((e: any) => {
+    e.preventDefault();
+    e.stopPropagation();
     setMouseDown(false);
   }, []);
 
-  const delimiterMouseLeaveHandler = useCallback(() => {
-    setMouseDown(false);
+  const delimiterMouseLeaveHandler = useCallback((e: any) => {
+    e.preventDefault();
+    e.stopPropagation();
   }, []);
 
   const delimiterMouseMoveHandler = useCallback(
     (e: any) => {
+      e.preventDefault();
+      e.stopPropagation();
+
       setXPos(e.pageX);
 
       if (mouseDown && previousXPos > 0 && xPos > 0) {
         const difference = previousXPos - xPos;
-        const delta = 0.07;
+        const delta = 0.25 * Math.abs(difference);
 
         if (difference > 0 && requestConsolePxWidth > 400) {
           requestConsoleRef.current.style.width = `${requestPercentWidth - delta}%`;
@@ -90,6 +109,21 @@ const Consoles: React.FC<IConsolesProps> = ({ request, setRequest }) => {
     ]
   );
 
+  const documentMouseMoveHandler = useCallback(
+    (e: any) => {
+      delimiterMouseMoveHandler(e);
+    },
+    [mouseDown]
+  );
+
+  const documentMouseUpHandler = useCallback(() => {
+    setMouseDown(false);
+  }, []);
+
+  const documentMouseDownHandler = useCallback(() => {
+    setMouseDown(true);
+  }, []);
+
   return (
     <UI.ConsolesWrapper>
       <Console ref={requestConsoleRef} headerText={VARS.REQUEST} request={request} setRequest={setRequest} />
@@ -98,6 +132,7 @@ const Consoles: React.FC<IConsolesProps> = ({ request, setRequest }) => {
         onMouseUp={delimiterMouseUpHandler}
         onMouseMove={delimiterMouseMoveHandler}
         onMouseLeave={delimiterMouseLeaveHandler}
+        onDragStart={() => false}
       >
         <DotsIcon />
       </UI.Delimiter>

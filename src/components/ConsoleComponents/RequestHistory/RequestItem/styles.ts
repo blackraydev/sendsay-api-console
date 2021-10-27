@@ -8,6 +8,7 @@ interface IRequestItemStyleProps {
 }
 
 export const ItemWrapper = styled.div`
+  z-index: 5;
   transition: 0.15s;
   position: relative;
   cursor: pointer;
@@ -47,4 +48,10 @@ export const ActionName = styled.p`
   color: ${COLORS.BLACK};
   font-size: 16px;
   margin-right: 10px;
+
+  a {
+    pointer-events: none;
+    text-decoration: none;
+    color: ${COLORS.BLACK} !important;
+  }
 `;

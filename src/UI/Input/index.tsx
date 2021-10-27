@@ -1,4 +1,5 @@
-import React, { Dispatch, SetStateAction, useEffect, useMemo, useState } from 'react';
+import React, { Dispatch, SetStateAction, useEffect, useMemo, useRef, useState } from 'react';
+import { AutoCompleteTypes } from '../../constants/autoCompleteTypes';
 import InputTypes from '../../constants/inputTypes';
 import VARS from '../../constants/vars';
 import { checkForCyrillic } from '../../helpers/checkForCyrillic';
@@ -11,6 +12,7 @@ import * as UI from './styles';
 interface IInputProps {
   value: string;
   onChange: (e: ChangeEvent) => void;
+  name: string;
   invalid?: boolean;
   setInvalid?: Dispatch<SetStateAction<boolean>>;
   placeholder?: string;
@@ -18,6 +20,7 @@ interface IInputProps {
   label?: string;
   optional?: boolean;
   rules?: IInputRules;
+  autocomplete?: boolean;
 }
 
 const Input: React.FC<IInputProps> = ({
@@ -30,6 +33,8 @@ const Input: React.FC<IInputProps> = ({
   label,
   optional,
   rules,
+  name,
+  autocomplete,
 }) => {
   const [userTyped, setUserTyped] = useState<boolean>(false);
 
@@ -67,6 +72,9 @@ const Input: React.FC<IInputProps> = ({
         placeholder={placeholder}
         type={type ? type : InputTypes.TEXT}
         invalid={invalid}
+        name={name}
+        x-autocompletetype={name}
+        autoComplete={autocomplete ? AutoCompleteTypes.ON : AutoCompleteTypes.OFF}
       />
     </UI.InputWrapper>
   );

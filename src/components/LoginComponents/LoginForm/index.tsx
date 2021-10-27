@@ -55,12 +55,15 @@ const LoginForm: React.FC<ILoginFormProps> = ({ authenticate, loading, error }) 
         placeholder={VARS.LOGIN}
         label={VARS.LOGIN}
         rules={{ required: true, withoutSpace: true }}
+        name={VARS.EMAIL}
+        autocomplete
       />
       <Input
         value={sublogin}
         onChange={(e) => setSubLogin(e.target.value)}
         placeholder={VARS.SUBLOGIN}
         label={VARS.SUBLOGIN}
+        name={VARS.SUBLOGIN_ENG}
         optional
       />
       <Input
@@ -72,6 +75,8 @@ const LoginForm: React.FC<ILoginFormProps> = ({ authenticate, loading, error }) 
         label={VARS.PASSWORD}
         rules={{ required: true, nonCyrillic: true }}
         type={InputTypes.PASSWORD}
+        name={VARS.PASSWORD_ENG}
+        autocomplete
       />
       <Button onClick={onSubmit} type={ButtonTypes.SUBMIT} disabled={buttonDisabled}>
         {loading ? <Loader /> : VARS.ENTER}

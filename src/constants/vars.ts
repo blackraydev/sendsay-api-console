@@ -1,5 +1,8 @@
 enum VARS {
   API_CONSOLE = 'API-консолька',
+  EMAIL = 'email',
+  SUBLOGIN_ENG = 'sublogin',
+  PASSWORD_ENG = 'password',
   LOGIN = 'Логин',
   SUBLOGIN = 'Сублогин',
   PASSWORD = 'Пароль',
