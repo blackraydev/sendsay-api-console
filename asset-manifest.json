@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "https://blackraydev.github.io/sendsay-api-console/static/css/main.d29117dd.chunk.css",
-    "main.js": "https://blackraydev.github.io/sendsay-api-console/static/js/main.acc4c069.chunk.js",
-    "main.js.map": "https://blackraydev.github.io/sendsay-api-console/static/js/main.acc4c069.chunk.js.map",
+    "main.js": "https://blackraydev.github.io/sendsay-api-console/static/js/main.77d23281.chunk.js",
+    "main.js.map": "https://blackraydev.github.io/sendsay-api-console/static/js/main.77d23281.chunk.js.map",
     "runtime-main.js": "https://blackraydev.github.io/sendsay-api-console/static/js/runtime-main.7dad8b21.js",
     "runtime-main.js.map": "https://blackraydev.github.io/sendsay-api-console/static/js/runtime-main.7dad8b21.js.map",
-    "static/js/2.0e9156fc.chunk.js": "https://blackraydev.github.io/sendsay-api-console/static/js/2.0e9156fc.chunk.js",
-    "static/js/2.0e9156fc.chunk.js.map": "https://blackraydev.github.io/sendsay-api-console/static/js/2.0e9156fc.chunk.js.map",
+    "static/js/2.44d5eaa6.chunk.js": "https://blackraydev.github.io/sendsay-api-console/static/js/2.44d5eaa6.chunk.js",
+    "static/js/2.44d5eaa6.chunk.js.map": "https://blackraydev.github.io/sendsay-api-console/static/js/2.44d5eaa6.chunk.js.map",
     "index.html": "https://blackraydev.github.io/sendsay-api-console/index.html",
-    "precache-manifest.5fd2c606ae769421aa3a2384538b3f15.js": "https://blackraydev.github.io/sendsay-api-console/precache-manifest.5fd2c606ae769421aa3a2384538b3f15.js",
+    "precache-manifest.e05a5a536a0bf4da95186dc8d74c9028.js": "https://blackraydev.github.io/sendsay-api-console/precache-manifest.e05a5a536a0bf4da95186dc8d74c9028.js",
     "service-worker.js": "https://blackraydev.github.io/sendsay-api-console/service-worker.js",
     "static/css/main.d29117dd.chunk.css.map": "https://blackraydev.github.io/sendsay-api-console/static/css/main.d29117dd.chunk.css.map",
-    "static/js/2.0e9156fc.chunk.js.LICENSE.txt": "https://blackraydev.github.io/sendsay-api-console/static/js/2.0e9156fc.chunk.js.LICENSE.txt"
+    "static/js/2.44d5eaa6.chunk.js.LICENSE.txt": "https://blackraydev.github.io/sendsay-api-console/static/js/2.44d5eaa6.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.7dad8b21.js",
-    "static/js/2.0e9156fc.chunk.js",
+    "static/js/2.44d5eaa6.chunk.js",
     "static/css/main.d29117dd.chunk.css",
-    "static/js/main.acc4c069.chunk.js"
+    "static/js/main.77d23281.chunk.js"
   ]
 }
