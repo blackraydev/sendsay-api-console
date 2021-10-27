@@ -11,14 +11,14 @@ const { store, persistor } = createStore();
 
 const App = () => {
   return (
-    <Router>
+    <Router basename={process.env.PUBLIC_URL}>
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
           <Switch>
-            <Route exact path="/sendsay-api-console/console">
+            <Route exact path="/console">
               <ConsolePage />
             </Route>
-            <Route exact path="/sendsay-api-console">
+            <Route exact path="/">
               <LoginPage />
             </Route>
           </Switch>
