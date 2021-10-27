@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/sendsay-api-console/static/css/main.d29117dd.chunk.css",
+    "main.js": "/sendsay-api-console/static/js/main.57db0293.chunk.js",
+    "main.js.map": "/sendsay-api-console/static/js/main.57db0293.chunk.js.map",
+    "runtime-main.js": "/sendsay-api-console/static/js/runtime-main.161718cb.js",
+    "runtime-main.js.map": "/sendsay-api-console/static/js/runtime-main.161718cb.js.map",
+    "static/js/2.44a5e476.chunk.js": "/sendsay-api-console/static/js/2.44a5e476.chunk.js",
+    "static/js/2.44a5e476.chunk.js.map": "/sendsay-api-console/static/js/2.44a5e476.chunk.js.map",
+    "index.html": "/sendsay-api-console/index.html",
+    "precache-manifest.9551493e5b92d59b950ae7221c29c038.js": "/sendsay-api-console/precache-manifest.9551493e5b92d59b950ae7221c29c038.js",
+    "service-worker.js": "/sendsay-api-console/service-worker.js",
+    "static/css/main.d29117dd.chunk.css.map": "/sendsay-api-console/static/css/main.d29117dd.chunk.css.map",
+    "static/js/2.44a5e476.chunk.js.LICENSE.txt": "/sendsay-api-console/static/js/2.44a5e476.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.161718cb.js",
+    "static/js/2.44a5e476.chunk.js",
+    "static/css/main.d29117dd.chunk.css",
+    "static/js/main.57db0293.chunk.js"
+  ]
+}
