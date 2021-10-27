@@ -32,6 +32,7 @@ export const HistoryWrapper = styled.div`
 `;
 
 export const ClearHistory = styled.div`
+  z-index: 5;
   position: relative;
   cursor: pointer;
   height: 100%;
