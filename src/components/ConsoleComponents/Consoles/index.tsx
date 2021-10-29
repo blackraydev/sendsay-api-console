@@ -17,23 +17,8 @@ const Consoles: React.FC<IConsolesProps> = ({ request, setRequest }) => {
   const [xPos, setXPos] = useState<number>(0);
   const previousXPos = usePrevious<number>(xPos);
 
-  const [requestPercentWidth, setRequestPercentWidth] = useState<number>(100);
-  const [responsePercentWidth, setResponsePercentWidth] = useState<number>(100);
-
   const requestConsoleRef = useRef<any>(null);
   const responseConsoleRef = useRef<any>(null);
-
-  useEffect(() => {
-    document.addEventListener('mousemove', documentMouseMoveHandler);
-    document.addEventListener('mouseup', documentMouseUpHandler);
-    document.addEventListener('mousedown', documentMouseDownHandler);
-
-    return () => {
-      document.removeEventListener('mousemove', documentMouseMoveHandler);
-      document.removeEventListener('mouseup', documentMouseUpHandler);
-      document.removeEventListener('mousedown', documentMouseDownHandler);
-    };
-  }, []);
 
   const requestConsolePxWidth = useMemo(() => {
     const consoleElem = requestConsoleRef.current;
@@ -42,7 +27,7 @@ const Consoles: React.FC<IConsolesProps> = ({ request, setRequest }) => {
       const { width } = consoleElem.getBoundingClientRect();
       return width;
     }
-  }, [requestConsoleRef.current]);
+  }, [requestConsoleRef.current?.style?.width]);
 
   const responseConsolePxWidth = useMemo(() => {
     const consoleElem = responseConsoleRef.current;
@@ -51,88 +36,67 @@ const Consoles: React.FC<IConsolesProps> = ({ request, setRequest }) => {
       const { width } = consoleElem.getBoundingClientRect();
       return width;
     }
-  }, [responseConsoleRef.current]);
+  }, [responseConsoleRef.current?.style?.width]);
 
-  const delimiterMouseDownHandler = useCallback((e: any) => {
-    e.preventDefault();
-    e.stopPropagation();
+  const delimiterDragStartHandler = useCallback((e: any) => {
+    const ghostImage = document.createElement('div');
+
+    ghostImage.innerHTML = 'ghostImage';
+    ghostImage.style.color = 'transparent';
+
+    document.body.appendChild(ghostImage);
+
+    e.dataTransfer.setDragImage(ghostImage, 0, 0);
+
     setMouseDown(true);
   }, []);
 
-  const delimiterMouseUpHandler = useCallback((e: any) => {
-    e.preventDefault();
-    e.stopPropagation();
+  const delimiterDragEndHandler = useCallback(() => {
     setMouseDown(false);
   }, []);
 
-  const delimiterMouseLeaveHandler = useCallback((e: any) => {
-    e.preventDefault();
-    e.stopPropagation();
-  }, []);
-
-  const delimiterMouseMoveHandler = useCallback(
+  const delimiterDragHandler = useCallback(
     (e: any) => {
-      e.preventDefault();
-      e.stopPropagation();
+      const consoleRequestElem = requestConsoleRef.current;
+      const consoleResponseElem = responseConsoleRef.current;
 
-      setXPos(e.pageX);
+      const { left: consoleRequestLeft } = consoleRequestElem.getBoundingClientRect();
+      const { right: consoleResponseRight } = consoleResponseElem.getBoundingClientRect();
 
-      if (mouseDown && previousXPos > 0 && xPos > 0) {
+      const CONSOLE_MIN_WIDTH = 400;
+      const CONSOLE_PADDINGS = 15;
+      const DELIMITER_WIDTH = 20;
+
+      const consoleRequestBounds = consoleRequestLeft + CONSOLE_MIN_WIDTH + CONSOLE_PADDINGS + DELIMITER_WIDTH;
+      const consoleResponseBounds = consoleResponseRight - CONSOLE_MIN_WIDTH - CONSOLE_PADDINGS - DELIMITER_WIDTH;
+
+      if (xPos != e.pageX && e.pageX >= consoleRequestBounds && e.pageX <= consoleResponseBounds) {
+        setXPos(e.pageX);
+
         const difference = previousXPos - xPos;
-        const delta = 0.25 * Math.abs(difference);
+        const absDifference = Math.abs(difference);
 
-        if (difference > 0 && requestConsolePxWidth > 400) {
-          requestConsoleRef.current.style.width = `${requestPercentWidth - delta}%`;
-          responseConsoleRef.current.style.width = `${responsePercentWidth + delta}%`;
-
-          setRequestPercentWidth((prev) => prev - delta);
-          setResponsePercentWidth((prev) => prev + delta);
-        } else if (difference < 0 && responseConsolePxWidth > 400) {
-          responseConsoleRef.current.style.width = `${responsePercentWidth - delta}%`;
-          requestConsoleRef.current.style.width = `${requestPercentWidth + delta}%`;
-
-          setRequestPercentWidth((prev) => prev + delta);
-          setResponsePercentWidth((prev) => prev - delta);
+        if (difference > 0 && absDifference < 150) {
+          requestConsoleRef.current.style.width = `${requestConsolePxWidth - absDifference}px`;
+          responseConsoleRef.current.style.width = `${responseConsolePxWidth + absDifference}px`;
+        } else if (difference < 0 && absDifference < 150) {
+          responseConsoleRef.current.style.width = `${responseConsolePxWidth - absDifference}px`;
+          requestConsoleRef.current.style.width = `${requestConsolePxWidth + absDifference}px`;
         }
       }
     },
-    [
-      mouseDown,
-      previousXPos,
-      xPos,
-      requestConsolePxWidth,
-      responseConsolePxWidth,
-      requestConsoleRef.current,
-      responseConsoleRef.current,
-      requestPercentWidth,
-      responsePercentWidth,
-    ]
+    [previousXPos, xPos, responseConsolePxWidth, requestConsolePxWidth]
   );
-
-  const documentMouseMoveHandler = useCallback(
-    (e: any) => {
-      delimiterMouseMoveHandler(e);
-    },
-    [mouseDown]
-  );
-
-  const documentMouseUpHandler = useCallback(() => {
-    setMouseDown(false);
-  }, []);
-
-  const documentMouseDownHandler = useCallback(() => {
-    setMouseDown(true);
-  }, []);
 
   return (
     <UI.ConsolesWrapper>
       <Console ref={requestConsoleRef} headerText={VARS.REQUEST} request={request} setRequest={setRequest} />
       <UI.Delimiter
-        onMouseDown={delimiterMouseDownHandler}
-        onMouseUp={delimiterMouseUpHandler}
-        onMouseMove={delimiterMouseMoveHandler}
-        onMouseLeave={delimiterMouseLeaveHandler}
-        onDragStart={() => false}
+        mouseDown={mouseDown}
+        draggable={true}
+        onDrag={delimiterDragHandler}
+        onDragStart={delimiterDragStartHandler}
+        onDragEnd={delimiterDragEndHandler}
       >
         <DotsIcon />
       </UI.Delimiter>

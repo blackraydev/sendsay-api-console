@@ -1,5 +1,9 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import COLORS from '../../../constants/colors';
+
+interface IDelimiterProps {
+  mouseDown: boolean;
+}
 
 export const ConsolesWrapper = styled.div`
   display: flex;
@@ -15,10 +19,24 @@ export const ConsolesWrapper = styled.div`
   }
 `;
 
-export const Delimiter = styled.div`
+export const Delimiter = styled.div<IDelimiterProps>`
   margin-top: -50px;
   padding: 0 5px;
-  cursor: text;
+  cursor: pointer;
+
+  ${({ mouseDown }) =>
+    (mouseDown &&
+      css`
+        &: * {
+          cursor: text !important;
+        }
+      `) ||
+    (!mouseDown &&
+      css`
+        &: * {
+          cursor: pointer !important;
+        }
+      `)}
 
   svg {
     circle {
