@@ -1,15 +1,14 @@
 import React, { useCallback } from 'react';
-import { Action, ActionFunctionAny } from 'redux-actions';
 
 import { IRequest } from '../../../models/IRequest';
 import RequestItem from './RequestItem';
 import * as UI from './styles';
 
 interface IRequestHistoryProps {
-  setRequest: ActionFunctionAny<Action<any>>;
-  setResponse: ActionFunctionAny<Action<any>>;
-  removeRequest: ActionFunctionAny<Action<any>>;
-  removeAllRequests: ActionFunctionAny<Action<any>>;
+  setRequest: (request: IRequest) => void;
+  setResponse: (query: string) => void;
+  removeRequest: (id: number) => void;
+  removeAllRequests: () => void;
   allRequests: IRequest[];
 }
 

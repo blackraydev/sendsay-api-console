@@ -25,7 +25,7 @@ const Console = forwardRef(({ headerText, request, setRequest, readonly }: ICons
         query: value,
       };
 
-      setRequest({ request });
+      setRequest(request);
     }
   }, [value]);
 

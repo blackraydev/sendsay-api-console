@@ -1,50 +1,18 @@
-import { createStore, applyMiddleware, combineReducers } from 'redux';
-import createSagaMiddleware from 'redux-saga';
-import { persistStore, persistReducer } from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
+import { create } from 'mobx-persist';
+import { PersistKeys } from '../constants/persistKeys';
 
-import rootReducer from './reducers';
-import rootSaga from './sagas';
+import { authStore } from './auth';
+import { requestStore } from './request';
 
-const persistAuthConfig = {
-  key: 'root',
-  storage,
-};
+const hydrate = create();
 
-const persistRequestConfig = {
-  key: 'request',
-  storage,
-};
+class RootStore {
+  authStore = authStore;
+  requestStore = requestStore;
 
-const sagaMiddleware = createSagaMiddleware();
-const persistedAuthReducer = persistReducer(persistAuthConfig, rootReducer.auth);
-const persistedRequestReducer = persistReducer(persistRequestConfig, rootReducer.request);
-const reducer = combineReducers({ persistedAuthReducer, persistedRequestReducer });
-
-const bindMiddleware = (middleware: any) => {
-  if (process.env.NODE_ENV !== 'production') {
-    const { composeWithDevTools } = require('redux-devtools-extension');
-    return composeWithDevTools(applyMiddleware(...middleware));
+  constructor() {
+    Promise.all([hydrate(PersistKeys.AUTH, this.authStore), hydrate(PersistKeys.REQUEST, this.requestStore)]);
   }
-  return applyMiddleware(...middleware);
-};
+}
 
-const configureStore = (initialState = {}) => {
-  const store = createStore<any, any, any, any>(reducer, initialState, bindMiddleware([sagaMiddleware]));
-  let persistor = persistStore(store);
-
-  store.runSagaTask = () => {
-    store.sagaTask = sagaMiddleware.run(rootSaga);
-  };
-
-  store.runSagaTask();
-
-  return {
-    store,
-    persistor,
-  };
-};
-
-export default configureStore;
-
-export type RootState = ReturnType<typeof reducer>;
+export default new RootStore();
