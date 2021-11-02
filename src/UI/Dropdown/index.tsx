@@ -7,10 +7,10 @@ import * as UI from './styles';
 
 interface IDropdownProps {
   request: IRequest;
-  setRequest: ActionFunctionAny<Action<any>>;
-  setResponse: ActionFunctionAny<Action<any>>;
-  removeRequest: ActionFunctionAny<Action<any>>;
-  setShowCopied: Dispatch<SetStateAction<boolean>>;
+  setRequest: (request: IRequest) => void;
+  setResponse: (query: string) => void;
+  removeRequest: (id: number) => void;
+  setShowCopied: (state: boolean) => void;
 }
 
 const Dropdown = forwardRef(
@@ -24,8 +24,8 @@ const Dropdown = forwardRef(
     }, [ref]);
 
     const executeRequestHandler = useCallback(() => {
-      setRequest({ request });
-      setResponse(request);
+      setRequest(request);
+      setResponse(request.query);
     }, []);
 
     const copyRequestHandler = useCallback(() => {
@@ -38,7 +38,7 @@ const Dropdown = forwardRef(
     }, [request, setShowCopied]);
 
     const removeRequestHandler = useCallback(() => {
-      removeRequest({ request });
+      removeRequest(request.id || 0);
     }, [removeRequest]);
 
     return (

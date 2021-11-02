@@ -1,5 +1,4 @@
 import React, { useCallback } from 'react';
-import { Action, ActionFunctionAny } from 'redux-actions';
 
 import ButtonTypes from '../../../constants/buttonTypes';
 import VARS from '../../../constants/vars';
@@ -15,15 +14,15 @@ import * as UI from './styles';
 interface IFooterProps {
   isLoading: boolean;
   request: IRequest;
-  setRequest: ActionFunctionAny<Action<any>>;
-  setResponse: ActionFunctionAny<Action<any>>;
-  jsonInvalid: ActionFunctionAny<Action<any>>;
+  setRequest: (request: IRequest) => void;
+  setResponse: (request: string) => void;
+  jsonInvalid: () => void;
 }
 
 const Footer: React.FC<IFooterProps> = ({ isLoading, request, setRequest, setResponse, jsonInvalid }) => {
   const sendRequestHandler = useCallback(() => {
     if (isValidJson(request.query)) {
-      return setResponse(request);
+      return setResponse(request.query);
     }
 
     return jsonInvalid();
@@ -36,7 +35,7 @@ const Footer: React.FC<IFooterProps> = ({ isLoading, request, setRequest, setRes
         query: formattedJson,
       };
 
-      return setRequest({ request: formattedRequest });
+      return setRequest(formattedRequest);
     }
 
     return jsonInvalid();

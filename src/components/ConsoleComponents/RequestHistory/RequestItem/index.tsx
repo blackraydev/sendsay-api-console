@@ -3,17 +3,16 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { StatusType } from '../../../../types/StatusType';
 import Dropdown from '../../../../UI/Dropdown';
 import { DotsIcon } from '../../../CommonComponents/Icons/DotsIcon';
-import { Action, ActionFunctionAny } from 'redux-actions';
-import * as UI from './styles';
 import { IRequest } from '../../../../models/IRequest';
 import VARS from '../../../../constants/vars';
 import Copied from './Copied';
+import * as UI from './styles';
 
 interface IRequestItemProps {
   query: string;
-  setRequest: ActionFunctionAny<Action<any>>;
-  setResponse: ActionFunctionAny<Action<any>>;
-  removeRequest: ActionFunctionAny<Action<any>>;
+  setRequest: (request: IRequest) => void;
+  setResponse: (query: string) => void;
+  removeRequest: (id: number) => void;
   id?: number;
   status?: StatusType;
 }

@@ -1,39 +1,35 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { observer } from 'mobx-react-lite';
+import React, { useEffect } from 'react';
 import { RouteComponentProps, withRouter } from 'react-router';
 
 import Consoles from '../../components/ConsoleComponents/Consoles';
 import Footer from '../../components/ConsoleComponents/Footer';
 import Header from '../../components/ConsoleComponents/Header';
 import RequestHistory from '../../components/ConsoleComponents/RequestHistory';
-import { useActions } from '../../hooks/useActions';
-import {
-  authIsLoggedInSelector,
-  authLoginInSelector,
-  authSubloginInSelector,
-  requestAllSelector,
-  requestLoadingSelector,
-  requestSelector,
-} from '../../store/selectors';
+import rootStore from '../../store';
 import * as UI from './styles';
 
-const ConsolePage: React.FC<RouteComponentProps> = ({ history }) => {
+const ConsolePage: React.FC<RouteComponentProps> = observer(({ history }) => {
+  const { authStore, requestStore } = rootStore;
+
   const {
-    logout,
     setRequest,
-    setResponse,
-    jsonInvalid,
+    sendRequestAsync,
+    setJsonInvalid,
     clearRequest,
     removeRequest,
     removeAllRequests,
-  } = useActions();
+  } = requestStore;
 
-  const login = useSelector(authLoginInSelector);
-  const sublogin = useSelector(authSubloginInSelector);
-  const isLoggedIn = useSelector(authIsLoggedInSelector);
-  const request = useSelector(requestSelector);
-  const allRequests = useSelector(requestAllSelector);
-  const isLoading = useSelector(requestLoadingSelector);
+  const { logoutAsync } = authStore;
+
+  const login = authStore.login;
+  const sublogin = authStore.sublogin;
+  const isLoggedIn = !!authStore.sessionKey?.length;
+
+  const request = requestStore.request;
+  const requestsList = requestStore.requestsList;
+  const isLoading = requestStore.isLoading;
 
   useEffect(() => {
     clearRequest();
@@ -48,15 +44,15 @@ const ConsolePage: React.FC<RouteComponentProps> = ({ history }) => {
   const headerProps = {
     login,
     sublogin,
-    logout,
+    logout: logoutAsync,
   };
 
   const requestHistoryProps = {
     setRequest,
-    setResponse,
+    setResponse: sendRequestAsync,
     removeRequest,
     removeAllRequests,
-    allRequests,
+    allRequests: requestsList,
   };
 
   const consolesProps = {
@@ -68,8 +64,8 @@ const ConsolePage: React.FC<RouteComponentProps> = ({ history }) => {
     isLoading,
     request,
     setRequest,
-    setResponse,
-    jsonInvalid,
+    setResponse: sendRequestAsync,
+    jsonInvalid: setJsonInvalid,
   };
 
   return (
@@ -80,6 +76,6 @@ const ConsolePage: React.FC<RouteComponentProps> = ({ history }) => {
       <Footer {...footerProps} />
     </UI.Wrapper>
   );
-};
+});
 
 export default withRouter(ConsolePage);
